@@ -9,7 +9,7 @@ if [  ! "$(ls -A /var/www/html/magento2)" ]; then
 
     echo "Permission fixs";
     cd /var/www/html/
-    find . -type d -exec chmod 700 {} \; && find . -type f -exec chmod 600 {} \;
+    #find . -type d -exec chmod 700 {} \; && find . -type f -exec chmod 600 {} \;
 
     echo "Magento2 Installing...";
     php /var/www/html/magento2/bin/magento setup:install --base-url=http://magento2.local \

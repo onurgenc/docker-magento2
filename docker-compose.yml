@@ -22,6 +22,12 @@ services:
           context: ./mysql
       volumes:
           - ./volume/mysql:/var/lib/mysql
+      environment:
+          - MYSQL_CONNECTION=mysql
+          - MYSQL_HOST=mysql
+          - MYSQL_PORT=3306
+          - MYSQL_ROOT_PASSWORD=123456
+          - MYSQL_DATABASE="magento"
       networks:
           - code-network
 
