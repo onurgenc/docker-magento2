@@ -1,0 +1,30 @@
+version: "2"
+services:
+  magento2:
+        image: magento2
+        build:
+            context: ./magento2
+        ports:
+            - "80:80"
+        links:
+            - mysql
+        volumes:
+            - ./volume/ngix:/var/www/html
+        networks:
+            - code-network
+        environment:
+            - MAGENTO_BASE_URL=${MAGENTO_BASE_URL}
+        entrypoint: /entrypoint.sh
+
+  mysql:
+      image: mysql_db
+      build:
+          context: ./mysql
+      volumes:
+          - ./volume/mysql:/var/lib/mysql
+      networks:
+          - code-network
+
+networks:
+    code-network:
+        driver: bridge
