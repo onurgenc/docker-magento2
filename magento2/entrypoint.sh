@@ -34,6 +34,8 @@ if [  ! "$(ls -A /var/www/html/magento2)" ]; then
 
 else
     echo "Base url updating..."
+    composer require onurgenc/shopfinder dev-master
+    composer update
     php /var/www/html/magento2/bin/magento setup:store-config:set --base-url=$MAGENTO_BASE_URL
     php /var/www/html/magento2/bin/magento cache:flush
     echo "Started"
