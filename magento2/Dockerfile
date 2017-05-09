@@ -36,6 +36,7 @@ RUN apt-get install -y \
 
 CMD mkdir -p /run/php && \
     chown -R www-data:www-data /run/php
+RUN chown -R www-data:www-data /var/www/html
 
 COPY ./default.conf /etc/nginx/conf.d/
 COPY ./nginx.conf /etc/nginx/
