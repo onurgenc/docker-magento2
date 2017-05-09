@@ -11,6 +11,8 @@ if [  ! "$(ls -A /var/www/html/magento2)" ]; then
     cd /var/www/html/magento2
 
     chown -R www-data:www-data /var/www/html/magento2
+    find . -type d -exec chmod 700 {} \; && find . -type f -exec chmod 600 {} \;
+
     echo "Magento2 Installing...";
     php /var/www/html/magento2/bin/magento setup:install --base-url=http://magento2.local \
                 --db-host=mysql --db-name=magento --db-user=root --db-password=123456 \
