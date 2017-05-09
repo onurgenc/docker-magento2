@@ -1,9 +1,7 @@
-FROM nginx:latest
+FROM ubuntu:latest
 
 MAINTAINER Onur Genc <onurgenc@gmail.com>
 
-COPY ./default.conf /etc/nginx/conf.d/
-COPY ./nginx.conf /etc/nginx/
 
 RUN apt-get update \
   && apt-get install -y \
@@ -11,7 +9,6 @@ RUN apt-get update \
         cron \
         libfreetype6-dev \
         libicu-dev \
-        libjpeg62-turbo-dev \
         libmcrypt-dev \
         libxslt1-dev \
         libjpeg-dev \
@@ -19,8 +16,8 @@ RUN apt-get update \
         curl \
         nano
 
-
 RUN apt-get install -y \
+        nginx \
         php7.0-fpm \
         php7.0-mcrypt \
         php7.0-zip \
@@ -39,6 +36,9 @@ RUN apt-get install -y \
 
 CMD mkdir -p /run/php && \
     chown -R www-data:www-data /run/php
+
+COPY ./default.conf /etc/nginx/conf.d/
+COPY ./nginx.conf /etc/nginx/
 
 COPY ./magento.ini /usr/local/etc/php/conf.d/
 
